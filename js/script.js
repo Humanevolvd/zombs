@@ -17,6 +17,15 @@ const CONFIG = {
     ]
 };
 
+// ===== NAV CA COPY =====
+function copyNavCa() {
+    navigator.clipboard.writeText('6DVRVmrVgdgi5M2EPVbf4oWdp6WX3PPghxJ3uWWcpump').then(() => {
+        const el = document.querySelector('.nav-ca-addr');
+        el.textContent = 'COPIED!';
+        setTimeout(() => { el.textContent = '6DVRVm...cpump'; }, 2000);
+    });
+}
+
 // ===== NAVBAR =====
 document.getElementById('hamburger').addEventListener('click', () => {
     document.getElementById('navLinks').classList.toggle('active');

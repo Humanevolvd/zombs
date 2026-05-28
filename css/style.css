@@ -248,6 +248,33 @@ body::before {
     color: var(--toxic-green);
 }
 
+.nav-ca {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    background: var(--card-bg);
+}
+
+.nav-ca:hover {
+    border-color: var(--swamp-green);
+}
+
+.nav-ca-label {
+    font-family: var(--pixel-font);
+    font-size: 7px;
+    color: var(--dim-text);
+}
+
+.nav-ca-addr {
+    font-family: var(--pixel-font);
+    font-size: 7px;
+    color: var(--dirty-yellow);
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -264,6 +291,10 @@ body::before {
     height: 2px;
     background: var(--swamp-green);
     transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+    .nav-ca { display: none; }
 }
 
 /* ===== HERO ===== */
