@@ -253,26 +253,12 @@ setInterval(fetchTokenData, CONFIG.refreshInterval);
 const CA_INPUT_KEY = 'zombs_ca';
 
 function initCaAddress() {
-    const saved = localStorage.getItem(CA_INPUT_KEY);
-    if (saved) {
-        CONFIG.tokenAddress = saved;
-        document.getElementById('caAddress').textContent = truncateCa(saved);
-        fetchTokenData();
-    }
+    localStorage.removeItem(CA_INPUT_KEY);
+    document.getElementById('caAddress').textContent = truncateCa(CONFIG.tokenAddress);
 }
 
 function copyCa() {
     const addr = CONFIG.tokenAddress;
-    if (!addr || addr === 'YOUR_CA_HERE') {
-        const input = prompt('Enter $ZOMBS contract address:');
-        if (input && input.length > 20) {
-            CONFIG.tokenAddress = input;
-            localStorage.setItem(CA_INPUT_KEY, input);
-            document.getElementById('caAddress').textContent = truncateCa(input);
-            fetchTokenData();
-        }
-        return;
-    }
     navigator.clipboard.writeText(addr).then(() => {
         const btn = document.querySelector('.copy-btn');
         btn.textContent = '[COPIED!]';
@@ -311,11 +297,7 @@ document.querySelectorAll('.about-card, .carousel-ring, .buy-card').forEach(el =
 
 // ===== UPDATE CA DISPLAY =====
 (function updateCaDisplay() {
-    const caEl = document.getElementById('caAddress');
-    const saved = localStorage.getItem(CA_INPUT_KEY);
-    if (saved) {
-        caEl.textContent = truncateCa(saved);
-    }
+    document.getElementById('caAddress').textContent = truncateCa(CONFIG.tokenAddress);
 })();
 
 console.log('%c$ZOMBS — THE UNDEAD ARMY', 'font-size:18px; color:#8a7a3a; font-weight:bold;');
