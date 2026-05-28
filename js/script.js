@@ -3,7 +3,7 @@ const CONFIG = {
     apiKey: 'gmgn_5d401b0d48f150eca84afdc27ec2c505',
     apiBase: 'https://api.gmgn.ai/v1',
     chain: 'sol',
-    tokenAddress: 'YOUR_CA_HERE',
+    tokenAddress: '6DVRVmrVgdgi5M2EPVbf4oWdp6WX3PPghxJ3uWWcpump',
     refreshInterval: 30000,
     nftData: [
         { name: 'ZOMBIE #001', desc: 'The First Risen', file: 'photo_1_2026-05-28_03-19-37.jpg' },
