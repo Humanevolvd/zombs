@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$ZOMBS — The Undead Army</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="image%20(4).jpg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="particles-canvas"></div>
+
+    <div class="scanline"></div>
+    <div class="crt-overlay"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">ZOMBS<span class="blink">_</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about">$ZOMBS</a>
+                <a href="#nft-gallery">ARMY</a>
+                <a href="#how-it-works">UTILITY</a>
+                <a href="contract/app/index.html" target="_blank">WRAP</a>
+                <a href="#docs">DOCS</a>
+                <a href="#buy">BUY</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <canvas id="heroCanvas"></canvas>
+
+        <div class="bg-scene">
+            <div class="ground-line"></div>
+            <div class="car">
+                <div class="car-body">
+                    <div class="car-roof"></div>
+                    <div class="car-window"></div>
+                    <div class="car-wheel wheel-left"></div>
+                    <div class="car-wheel wheel-right"></div>
+                </div>
+                <div class="exhaust"></div>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title glitch" data-text="$ZOMBS">$ZOMBS</h1>
+            <p class="hero-subtitle">The Undead Army Has Risen</p>
+            <p class="hero-tagline">THE FIRST NFT COLLECTION WHERE HOLDING EQUALS EARNING — CONTINUOUSLY AND AUTOMATICALLY.</p>
+            <p class="hero-bio">1,111 PIXEL ZOMBIES INFECT THE BLOCKCHAIN. NO ROADMAP. NO PROMISES. ONLY DECAY.</p>
+            <div class="hero-stats" id="heroStats">
+                <div class="stat">
+                    <span class="stat-value" id="statPrice">$0.00</span>
+                    <span class="stat-label">PRICE</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="statMc">$0</span>
+                    <span class="stat-label">MARKET CAP</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="statHolders">0</span>
+                    <span class="stat-label">HOLDERS</span>
+                </div>
+            </div>
+            <a href="#buy" class="pixel-btn pulse-glow">BUY $ZOMBS</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title glitch-sm" data-text=">_ABOUT">>_ABOUT $ZOMBS</h2>
+            <div class="about-grid">
+                <div class="about-card pixel-border">
+                    <h3>WRAP $ZOMBS → MINT NFT</h3>
+                    <p>Lock your $ZOMBS tokens into a vault and mint a unique Zombie NFT. 1,111 supply max. Each NFT is bound to its vault — the tokens stay locked until you unwrap.</p>
+                </div>
+                <div class="about-card pixel-border">
+                    <h3>TRADE THE NFT</h3>
+                    <p>The vault follows the NFT. List, sell, or transfer your Zombie NFT on any marketplace — the locked $ZOMBS stay with the NFT. The new owner controls the vault.</p>
+                </div>
+                <div class="about-card pixel-border">
+                    <h3>UNWRAP → GET TOKENS BACK</h3>
+                    <p>Burn the NFT to release your $ZOMBS from the vault. Only the current NFT holder can unwrap. 5% secondary royalty funds the undead treasury.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nft-gallery" class="section">
+        <div class="container">
+            <h2 class="section-title glitch-sm" data-text=">_NFT_ARMY">>_NFT_ARMY</h2>
+            <p class="section-desc">The zombie horde. Click to inspect.</p>
+            <div class="gallery-grid" id="galleryGrid"></div>
+        </div>
+    </section>
+
+
+
+    <section id="docs" class="section docs-section">
+        <div class="container">
+            <h2 class="section-title glitch-sm" data-text=">_DOCS">>_DOCS</h2>
+
+            <div class="docs-toc pixel-border">
+                <h3>// CONTENTS</h3>
+                <a href="#docs-overview">01 — OVERVIEW</a>
+                <a href="#docs-arch">02 — ARCHITECTURE</a>
+                <a href="#docs-instructions">03 — INSTRUCTIONS</a>
+                <a href="#docs-pdas">04 — PDAs</a>
+                <a href="#docs-security">05 — SECURITY</a>
+                <a href="#docs-deploy">06 — DEPLOY</a>
+            </div>
+
+            <div class="docs-block" id="docs-overview">
+                <h3>01 // OVERVIEW</h3>
+                <p>$ZOMBS is a <strong>hybrid token + NFT</strong> protocol on Solana. Lock your $ZOMBS tokens into a program-derived vault and mint a unique Zombie NFT. The vault is <strong>cryptographically bound</strong> to the NFT — trade the NFT freely, and the vault follows. Burn the NFT anytime to release your tokens.</p>
+                <div class="flow-art"><pre>HOLD $ZOMBS  ──→  WRAP & MINT NFT  ──→  TRADE FREELY
+                      ↓
+                TOKENS LOCKED IN
+                PDA VAULT
+                      ↓
+GET TOKENS BACK  ←──  UNWRAP (BURN NFT)</pre></div>
+            </div>
+
+            <div class="docs-block" id="docs-arch">
+                <h3>02 // ARCHITECTURE</h3>
+                <p>The program uses <strong>Program Derived Addresses (PDAs)</strong> to bind tokens to NFTs without modifying the SPL token standard.</p>
+                <div class="arch-grid">
+                    <div class="arch-card pixel-border">
+                        <h3>ZombieBank</h3>
+                        <p><strong>Singleton PDA ["bank"]</strong><br>
+                        authority · token_mint · collection_mint<br>
+                        total_wrapped · max_bulls (1,111)<br>
+                        tokens_per_bull (1M) · royalty_bps (5%)</p>
+                    </div>
+                    <div class="arch-card pixel-border">
+                        <h3>ZombieAsset</h3>
+                        <p><strong>Per-NFT PDA ["bull", tier]</strong><br>
+                        nft_mint · owner · tier_index · wrapped_at</p>
+                    </div>
+                </div>
+                <div class="flow-art"><pre>USER WALLET          VAULT (PDA)          NFT MINT
+     │                    │                    │
+     │  WRAP:             │                    │
+     │───────────────────>│  1M $ZOMBS         │
+     │                                       │  Mint NFT
+     │<──────────────────────────────────────│
+     │                    │                    │
+     │  TRADE:            │                    │
+     │  (NFT sold)        │  Vault follows     │
+     │                    │<───────────────────│ New owner</pre></div>
+            </div>
+
+            <div class="docs-block" id="docs-instructions">
+                <h3>03 // INSTRUCTIONS</h3>
+                <table class="docs-table">
+                    <tr><th>#</th><th>Instruction</th><th>Description</th></tr>
+                    <tr><td>1</td><td><code>initialize</code></td><td>Creates ZombieBank singleton. Authority-gated (one-time).</td></tr>
+                    <tr><td>2</td><td><code>initialize_collection</code></td><td>Creates Metaplex Collection NFT. One-time setup.</td></tr>
+                    <tr><td>3</td><td><code>wrap</code></td><td>Locks 1M $ZOMBS → mints unique Zombie NFT → collection verify.</td></tr>
+                    <tr><td>4</td><td><code>unwrap</code></td><td>Burns NFT → drains vault → returns 1M $ZOMBS to caller.</td></tr>
+                </table>
+                <p><strong>Wrap accounts (15):</strong> bank, asset, nft_mint, nft_token_account, vault, vault_authority, user_token_account, metadata, master_edition, user, token_program, associated_token_program, token_metadata_program, system_program, rent</p>
+                <p><strong>Unwrap accounts (11):</strong> bank, asset, nft_mint, nft_token_account, vault, vault_authority, user_token_account, user, token_program, associated_token_program, system_program</p>
+            </div>
+
+            <div class="docs-block" id="docs-pdas">
+                <h3>04 // PDAs</h3>
+                <table class="docs-table">
+                    <tr><th>Seed</th><th>Account</th><th>Purpose</th></tr>
+                    <tr><td><code>["bank"]</code></td><td>ZombieBank</td><td>Global state singleton</td></tr>
+                    <tr><td><code>["bull", tier_index]</code></td><td>ZombieAsset</td><td>Per-NFT record</td></tr>
+                    <tr><td><code>["nft_mint", total_wrapped]</code></td><td>Mint</td><td>Deterministic NFT mint address</td></tr>
+                    <tr><td><code>["vault", nft_mint]</code></td><td>TokenAccount</td><td>Authority over vault</td></tr>
+                </table>
+            </div>
+
+            <div class="docs-block" id="docs-security">
+                <h3>05 // SECURITY</h3>
+                <table class="docs-table">
+                    <tr><th>Invariant</th><th>Enforcement</th></tr>
+                    <tr><td>Only NFT holder can drain vault</td><td><code>asset.owner == user.key()</code> + ATA check</td></tr>
+                    <tr><td>Vault bound to NFT</td><td><code>seeds = ["vault", nft_mint]</code></td></tr>
+                    <tr><td>No replay attacks</td><td>Each wrap creates unique <code>nft_mint</code></td></tr>
+                    <tr><td>Max supply (1,111)</td><td><code>total_wrapped &lt; max_bulls</code> — hard on-chain cap</td></tr>
+                    <tr><td>No admin drain</td><td>Zero instructions can move vault funds</td></tr>
+                </table>
+
+            </div>
+
+            <div class="docs-block" id="docs-deploy">
+                <h3>06 // DEPLOY</h3>
+                <div class="code-block"><pre># Prerequisites
+sh -c "$(curl -sSfL https://release.solana.com/v1.18.11/install)"
+cargo install --git https://github.com/coral-xyz/anchor avm --locked
+avm install 0.30.1 && avm use 0.30.1
+cd contract && npm install
+
+# Deploy to devnet
+solana config set --url devnet
+anchor build
+anchor deploy
+anchor run test
+
+# Deploy to mainnet
+solana config set --url mainnet-beta
+anchor build --verifiable
+anchor deploy --provider.cluster mainnet</pre></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="section">
+        <div class="container">
+            <h2 class="section-title glitch-sm" data-text=">_HOW_IT_WORKS">>_HOW IT WORKS</h2>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="flow-icon">[1]</div>
+                    <h4>HOLD $ZOMBS</h4>
+                    <p>Get $ZOMBS tokens on Solana. You need the minimum wrap amount to mint a Zombie NFT.</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">[2]</div>
+                    <h4>WRAP & MINT</h4>
+                    <p>Lock your tokens into a vault. A unique Zombie NFT is minted to your wallet. The vault is cryptographically bound to your NFT.</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">[3]</div>
+                    <h4>TRADE OR HOLD</h4>
+                    <p>Sell your NFT on any marketplace — the vault of locked tokens follows the NFT to the new owner. The horde grows.</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">[4]</div>
+                    <h4>UNWRAP ANYTIME</h4>
+                    <p>Burn the NFT to release your $ZOMBS from the vault. Only the current holder can unwrap. No timelocks. No gates.</p>
+                </div>
+            </div>
+            <div class="tech-note pixel-border">
+                <p>POWERED BY SOLANA PDA VAULTS — EACH NFT CONTROLS ITS OWN TOKEN VAULT. THE VAULT FOLLOWS THE NFT THROUGH EVERY TRANSFER. THIS IS THE FIRST HYBRID TOKEN+NFT LAYER ON SOLANA. NO TRUST REQUIRED.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="buy" class="section">
+        <div class="container">
+            <h2 class="section-title glitch-sm" data-text=">_BUY_$ZOMBS">>_BUY_$ZOMBS</h2>
+            <div class="buy-grid">
+                <div class="buy-card pixel-border">
+                    <div class="buy-step">1</div>
+                    <h4>GET A WALLET</h4>
+                    <p>Download Phantom or Solflare on Solana.</p>
+                </div>
+                <div class="buy-card pixel-border">
+                    <div class="buy-step">2</div>
+                    <h4>BUY SOL</h4>
+                    <p>Fund your wallet with SOL from any exchange.</p>
+                </div>
+                <div class="buy-card pixel-border">
+                    <div class="buy-step">3</div>
+                    <h4>SWAP ON DEX</h4>
+                    <p>Use Raydium or Jupiter to swap SOL for $ZOMBS.</p>
+                </div>
+                <div class="buy-card pixel-border">
+                    <div class="buy-step">4</div>
+                    <h4>JOIN THE HORDE</h4>
+                    <p>Hold $ZOMBS and mint your zombie NFT.</p>
+                </div>
+            </div>
+            <div class="ca-box pixel-border">
+                <span>CA: </span>
+                <span id="caAddress">Z0MBS...c0m1n9</span>
+                <button class="copy-btn" onclick="copyCa()" aria-label="Copy contract address">[COPY]</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>$ZOMBS<span class="blink">_</span></h3>
+                    <p>The Undead Army. 1,111 pixel zombies on Solana.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>LINKS</h4>
+                    <a href="https://x.com/zombs_sol" target="_blank">TWITTER / X</a>
+                    <a href="contract/app/index.html" target="_blank">WRAP / UNWRAP</a>
+                    <a href="contract/app/docs.html" target="_blank">TECH DOCS</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">[X]</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&lt;</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">&gt;</button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="NFT">
+            <div class="lightbox-info" id="lightboxInfo">
+                <h3 id="lightboxName">ZOMBIE #0</h3>
+                <p id="lightboxDesc">Legendary Pixel Zombie</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

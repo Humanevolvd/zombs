@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/app/(.*)", "destination": "/contract/app/$1" },
+    { "source": "/app", "destination": "/contract/app/index.html" }
+  ]
+}

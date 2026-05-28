@@ -1,0 +1,246 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --swamp-green: #4a7c3f;
+    --dirty-yellow: #8a7a3a;
+    --rust-brown: #6b3a2a;
+    --coal-black: #070805;
+    --dark-bg: #0a0b06;
+    --card-bg: #0f1108;
+    --border-color: #2a2f18;
+    --dim-text: #5a5a4a;
+    --pixel-font: 'Press Start 2P', monospace;
+    --terminal-font: 'VT323', monospace;
+}
+
+body {
+    font-family: var(--terminal-font);
+    background: var(--dark-bg);
+    color: #8a8a7a;
+    font-size: 18px;
+    min-height: 100vh;
+}
+
+#navbar {
+    padding: 12px 0;
+    background: rgba(5,6,3,0.92);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--pixel-font);
+    font-size: 12px;
+    color: var(--swamp-green);
+    text-decoration: none;
+}
+
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links a {
+    font-family: var(--pixel-font);
+    font-size: 9px;
+    color: var(--dim-text);
+    text-decoration: none;
+}
+
+.wallet-btn {
+    font-family: var(--pixel-font);
+    font-size: 8px;
+    padding: 8px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--swamp-green);
+    color: var(--swamp-green);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.wallet-btn:hover { background: var(--swamp-green); color: var(--coal-black); }
+.wallet-btn.connected { border-color: var(--dirty-yellow); color: var(--dirty-yellow); }
+
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+.app-main { padding: 100px 0 60px; }
+
+.page-title {
+    font-family: var(--pixel-font);
+    font-size: 18px;
+    color: var(--dirty-yellow);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.status-bar {
+    text-align: center;
+    font-family: var(--pixel-font);
+    font-size: 9px;
+    margin-bottom: 40px;
+    color: var(--dim-text);
+}
+#statusText { color: var(--rust-brown); }
+#statusText.connected { color: var(--swamp-green); }
+
+.stats-row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.stat-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 15px 25px;
+    text-align: center;
+    min-width: 160px;
+}
+
+.stat-val {
+    display: block;
+    font-family: var(--pixel-font);
+    font-size: 14px;
+    color: var(--dirty-yellow);
+    margin-bottom: 5px;
+}
+
+.stat-lbl {
+    font-family: var(--pixel-font);
+    font-size: 7px;
+    color: var(--dim-text);
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.action-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+}
+
+.action-card h3 {
+    font-family: var(--pixel-font);
+    font-size: 12px;
+    color: var(--swamp-green);
+    margin-bottom: 10px;
+}
+
+.action-card p {
+    font-size: 14px;
+    color: var(--dim-text);
+    margin-bottom: 20px;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-row input {
+    flex: 1;
+    padding: 10px;
+    background: var(--coal-black);
+    border: 1px solid var(--border-color);
+    color: var(--dirty-yellow);
+    font-family: var(--terminal-font);
+    font-size: 18px;
+}
+.input-row input:disabled { opacity: 0.5; }
+.input-row span { font-family: var(--pixel-font); font-size: 8px; color: var(--dim-text); }
+
+.action-btn {
+    width: 100%;
+    padding: 14px;
+    font-family: var(--pixel-font);
+    font-size: 10px;
+    background: var(--swamp-green);
+    border: none;
+    color: var(--coal-black);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.action-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.action-btn:hover:not(:disabled) { background: var(--dirty-yellow); }
+
+.tx-status {
+    margin-top: 10px;
+    font-family: var(--pixel-font);
+    font-size: 7px;
+    min-height: 20px;
+    word-break: break-all;
+}
+.tx-status.success { color: var(--swamp-green); }
+.tx-status.error { color: var(--rust-brown); }
+.tx-status.pending { color: var(--dirty-yellow); }
+
+.nft-select {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    padding: 10px;
+}
+
+.nft-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+.nft-item:hover { border-color: var(--swamp-green); }
+.nft-item.selected { border-color: var(--dirty-yellow); }
+.nft-item img { width: 40px; height: 40px; object-fit: cover; image-rendering: pixelated; }
+.nft-item span { font-family: var(--pixel-font); font-size: 7px; color: var(--dim-text); }
+
+.no-nfts { font-size: 12px; color: var(--dim-text); text-align: center; padding: 20px; }
+
+#connectPrompt { text-align: center; padding: 60px 20px; }
+#connectPrompt p { font-size: 16px; color: var(--dim-text); }
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 12px 20px;
+    font-family: var(--pixel-font);
+    font-size: 8px;
+    color: var(--coal-black);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+.toast.show { opacity: 1; }
+.toast.success { background: var(--swamp-green); }
+.toast.error { background: var(--rust-brown); }
+
+@media (max-width: 700px) {
+    .action-grid { grid-template-columns: 1fr; }
+}
+
+.glitch { position: relative; }
+.glitch::before, .glitch::after {
+    content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.4;
+}
+.glitch::before { color: var(--swamp-green); z-index: -1; animation: glitchShift 3s infinite; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); }
+.glitch::after { color: var(--rust-brown); z-index: -1; animation: glitchShift 2.5s infinite; clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%); }
+@keyframes glitchShift {
+    0% { transform: translate(0); } 20% { transform: translate(-2px, 1px); } 40% { transform: translate(2px, -1px); }
+    60% { transform: translate(-1px, -1px); } 80% { transform: translate(1px, 1px); } 100% { transform: translate(0); }
+}
+.blink { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }

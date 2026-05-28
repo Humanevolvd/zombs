@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$ZOMBS — Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .docs-content { max-width: 800px; margin: 0 auto; padding: 100px 20px 60px; }
+        .docs-content h2 { font-family: var(--pixel-font); font-size: 14px; color: var(--dirty-yellow); margin: 40px 0 20px; text-shadow: 0 0 6px rgba(138,122,58,0.2); }
+        .docs-content h2::before { content: '## '; color: var(--swamp-green); opacity: 0.5; }
+        .docs-content h3 { font-family: var(--pixel-font); font-size: 10px; color: var(--swamp-green); margin: 30px 0 15px; }
+        .docs-content p { font-size: 16px; color: var(--dim-text); line-height: 1.8; margin-bottom: 15px; }
+        .docs-content code { background: var(--coal-black); color: var(--dirty-yellow); padding: 2px 6px; font-family: var(--terminal-font); font-size: 15px; border: 1px solid var(--border-color); }
+        .docs-content pre { background: var(--coal-black); border: 1px solid var(--border-color); padding: 20px; overflow-x: auto; margin: 15px 0; }
+        .docs-content pre code { background: none; border: none; padding: 0; display: block; line-height: 1.6; }
+        .docs-content table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+        .docs-content th, .docs-content td { border: 1px solid var(--border-color); padding: 10px 12px; text-align: left; }
+        .docs-content th { background: var(--card-bg); font-family: var(--pixel-font); font-size: 8px; color: var(--dirty-yellow); }
+        .docs-content td { color: var(--dim-text); }
+        .docs-content ul, .docs-content ol { color: var(--dim-text); font-size: 15px; line-height: 1.8; padding-left: 25px; margin-bottom: 15px; }
+        .docs-content li { margin-bottom: 5px; }
+        .docs-content hr { border: none; border-top: 1px solid var(--border-color); margin: 40px 0; }
+        .docs-content .flow-art { font-family: monospace; color: var(--swamp-green); font-size: 13px; line-height: 1.5; white-space: pre; background: var(--coal-black); padding: 20px; border: 1px solid var(--border-color); }
+        .docs-content .badge { display: inline-block; padding: 3px 8px; font-family: var(--pixel-font); font-size: 7px; color: var(--coal-black); margin-right: 5px; }
+        .badge-green { background: var(--swamp-green); }
+        .badge-blue { background: #4a7caf; }
+        .badge-purple { background: #7a4a7c; }
+        .badge-red { background: var(--rust-brown); }
+        .docs-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: rgba(5,6,3,0.95); border-bottom: 2px solid var(--border-color); padding: 12px 0; }
+        .docs-nav-inner { max-width: 800px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .docs-nav a { font-family: var(--pixel-font); font-size: 10px; color: var(--dim-text); text-decoration: none; }
+        .docs-nav a:hover { color: var(--swamp-green); }
+        .toc { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; margin-bottom: 40px; }
+        .toc h3 { font-family: var(--pixel-font); font-size: 10px; color: var(--dirty-yellow); margin-bottom: 15px; }
+        .toc a { display: block; font-family: var(--pixel-font); font-size: 8px; color: var(--dim-text); text-decoration: none; padding: 4px 0; letter-spacing: 1px; }
+        .toc a:hover { color: var(--swamp-green); }
+    </style>
+</head>
+<body>
+    <nav class="docs-nav">
+        <div class="docs-nav-inner">
+            <a href="../../index.html">ZOMBS_</a>
+            <a href="index.html">[ WRAPP ]</a>
+            <a href="#">[ DOCS ]</a>
+        </div>
+    </nav>
+
+    <div class="docs-content">
+        <h1 style="font-family: var(--pixel-font); font-size: 20px; color: var(--dirty-yellow); text-align: center; margin-bottom: 10px; text-shadow: 0 0 10px rgba(138,122,58,0.3);">$ZOMBS — WRAP / UNWRAP</h1>
+        <p style="text-align: center; margin-bottom: 40px; font-size: 14px;">The First Hybrid Token+NFT Layer on Solana</p>
+
+        <p style="text-align: center; margin-bottom: 40px;">
+            <span class="badge badge-green">Anchor 0.30.1</span>
+            <span class="badge badge-blue">Solana 1.18</span>
+            <span class="badge badge-purple">Supply 1,111</span>
+            <span class="badge badge-red">MIT</span>
+        </p>
+
+        <div class="toc">
+            <h3>// CONTENTS</h3>
+            <a href="#overview">01 — OVERVIEW</a>
+            <a href="#architecture">02 — ARCHITECTURE</a>
+            <a href="#instructions">03 — INSTRUCTIONS</a>
+            <a href="#pdas">04 — PDAs</a>
+            <a href="#security">05 — SECURITY</a>
+            <a href="#deploy">06 — DEPLOY</a>
+            <a href="#testing">07 — TESTING</a>
+        </div>
+
+        <h2 id="overview">OVERVIEW</h2>
+        <p>$ZOMBS is a <strong>hybrid token + NFT</strong> protocol on Solana. Lock your $ZOMBS tokens into a program-derived vault and mint a unique Zombie NFT. The vault is <strong>cryptographically bound</strong> to the NFT — trade the NFT freely, and the vault follows. Burn the NFT anytime to release your tokens.</p>
+
+        <div class="flow-art">
+HOLD $ZOMBS  ──→  WRAP & MINT NFT  ──→  TRADE FREELY
+                      ↓
+                TOKENS LOCKED IN
+                PDA VAULT
+                      ↓
+GET TOKENS BACK  ←──  UNWRAP (BURN NFT)</div>
+
+        <h2 id="architecture">ARCHITECTURE</h2>
+        <p>The program uses <strong>Program Derived Addresses (PDAs)</strong> to bind tokens to NFTs without modifying the SPL token standard.</p>
+
+        <h3>Account Structure</h3>
+        <pre><code>ZombieBank (singleton PDA ["bank"])
+├── authority: Pubkey
+├── token_mint: Pubkey          ← $ZOMBS mint
+├── collection_mint: Pubkey     ← Metaplex collection
+├── total_wrapped: u64          ← NFTs minted
+├── max_bulls: u64              ← 1,111 cap
+├── tokens_per_bull: u64        ← 1,000,000
+├── royalty_bps: u16            ← 5%
+└── royalty_treasury: Pubkey
+
+ZombieAsset (per-NFT PDA ["bull", tier_index])
+├── nft_mint: Pubkey
+├── owner: Pubkey
+├── tier_index: u64
+└── wrapped_at: i64</code></pre>
+
+        <h3>Flow</h3>
+        <div class="flow-art">
+USER WALLET          VAULT (PDA)          NFT MINT
+     │                    │                    │
+     │  WRAP:             │                    │
+     │───────────────────>│  1M $ZOMBS         │
+     │                                       │  Mint NFT
+     │<──────────────────────────────────────│
+     │                    │                    │
+     │  TRADE:            │                    │
+     │  (NFT sold)        │  Vault follows     │
+     │                    │<───────────────────│ New owner
+     │                    │                    │
+     │  UNWRAP:           │                    │
+     │                    │  1M $ZOMBS back    │
+     │<───────────────────│                    │ Burned
+     │                    │                    │</div>
+
+        <h2 id="instructions">INSTRUCTIONS</h2>
+        <table>
+            <tr><th>#</th><th>Instruction</th><th>Description</th></tr>
+            <tr><td>1</td><td><code>initialize</code></td><td>Creates ZombieBank singleton. Authority-gated (one-time).</td></tr>
+            <tr><td>2</td><td><code>initialize_collection</code></td><td>Creates Metaplex Collection NFT. One-time setup.</td></tr>
+            <tr><td>3</td><td><code>wrap</code></td><td>Locks 1M $ZOMBS → mints unique Zombie NFT → collection verify.</td></tr>
+            <tr><td>4</td><td><code>unwrap</code></td><td>Burns NFT → drains vault → returns 1M $ZOMBS to caller.</td></tr>
+        </table>
+
+        <h3>Wrap Accounts</h3>
+        <pre><code>bank, asset, nft_mint, nft_token_account, vault,
+vault_authority, user_token_account, metadata,
+master_edition, user,
+token_program, associated_token_program,
+token_metadata_program, system_program, rent</code></pre>
+
+        <h3>Unwrap Accounts</h3>
+        <pre><code>bank, asset, nft_mint, nft_token_account, vault,
+vault_authority, user_token_account, user,
+token_program, associated_token_program, system_program</code></pre>
+
+        <h2 id="pdas">PDAs</h2>
+        <table>
+            <tr><th>Seed</th><th>Account</th><th>Purpose</th></tr>
+            <tr><td><code>["bank"]</code></td><td>ZombieBank</td><td>Global state singleton</td></tr>
+            <tr><td><code>["bull", tier_index]</code></td><td>ZombieAsset</td><td>Per-NFT record</td></tr>
+            <tr><td><code>["nft_mint", total_wrapped]</code></td><td>Mint</td><td>Deterministic NFT mint address</td></tr>
+            <tr><td><code>["vault", nft_mint]</code></td><td>TokenAccount</td><td>Authority over vault</td></tr>
+        </table>
+
+        <h2 id="security">SECURITY</h2>
+        <table>
+            <tr><th>Invariant</th><th>Enforcement</th></tr>
+            <tr><td>Only NFT holder can drain vault</td><td><code>asset.owner == user.key()</code> + ATA check</td></tr>
+            <tr><td>Vault bound to NFT</td><td><code>seeds = ["vault", nft_mint]</code> — cryptographic</td></tr>
+            <tr><td>No replay attacks</td><td>Each wrap creates unique <code>nft_mint</code></td></tr>
+            <tr><td>Max supply</td><td><code>total_wrapped &lt; max_bulls</code> — 1,111 hard cap</td></tr>
+            <tr><td>No admin drain</td><td>Zero instructions can move vault funds</td></tr>
+            <tr><td>Correct token</td><td><code>user_token_account.mint == bank.token_mint</code></td></tr>
+        </table>
+
+        <p style="color: var(--rust-brown); font-size: 14px;">⚠ Audit Status: This program has not been audited. Use at your own risk.</p>
+
+        <h2 id="deploy">DEPLOY</h2>
+        <h3>Prerequisites</h3>
+        <pre><code># Install Solana CLI
+sh -c "$(curl -sSfL https://release.solana.com/v1.18.11/install)"
+
+# Install Anchor
+cargo install --git https://github.com/coral-xyz/anchor avm --locked
+avm install 0.30.1
+avm use 0.30.1
+
+# Install deps
+cd contract
+npm install</code></pre>
+
+        <h3>Deploy to Devnet</h3>
+        <pre><code>solana config set --url devnet
+anchor build
+anchor deploy
+anchor run test</code></pre>
+
+        <h3>Deploy to Mainnet</h3>
+        <pre><code>solana config set --url mainnet-beta
+anchor build --verifiable
+anchor deploy --provider.cluster mainnet</code></pre>
+
+        <h2 id="testing">TESTING</h2>
+        <pre><code>anchor test</code></pre>
+        <p>Runs 3 test cases:</p>
+        <ol>
+            <li><strong>Initializes the bank</strong> — verifies bank state</li>
+            <li><strong>Wraps tokens and mints NFT</strong> — full wrap flow</li>
+            <li><strong>Unwraps NFT and returns tokens</strong> — full unwrap flow</li>
+        </ol>
+
+        <hr>
+        <p style="text-align: center; color: var(--dim-text); font-size: 12px;">MIT © 2026 $ZOMBS — The Undead Army</p>
+    </div>
+</body>
+</html>
